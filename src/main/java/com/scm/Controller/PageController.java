@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
+
 @Controller
 public class PageController {
 
@@ -17,5 +19,13 @@ public class PageController {
         return "home";
 
     }
+
+    @RequestMapping("/about")
+    public String  aboutPage(){
+        System.out.println("about page is initialized");
+        return "about";
+    }
+
     
 }
+
