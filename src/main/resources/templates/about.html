@@ -1,21 +1,12 @@
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <link rel="stylesheet" data-th-href="@{'/css/output.css'}"/>
-
+    <head th:replace="~{base::parent(~{::#one},~{::title})}">
+        <title>About Page</title>
     </head>
     <body>
-
-        <div class="host" th:replace="~{base :: parent(~{::p})}">
-            <p> this is passed html in tag </p>
+        <div id="one" class="pt-32 w-full h-full m-32">
+            <p>This is ABOUT PAGE IS THIS</p>
+            <p>This is two div</p>
         </div>
-        
-
     </body>
 </html>

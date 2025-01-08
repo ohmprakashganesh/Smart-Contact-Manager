@@ -1,4 +1,26 @@
-<div th:fragment="parent(content)">     
-    <h1> This is parent fragment </h1>
-    <div class="target" th:insert= "${content}">   </div>
-</div>
+<!DOCTYPE html>
+
+<html th:fragment="parent(content,title)" 
+xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title th:replace="${title}"></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" data-th-href="@{'/css/output.css'}"/>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
+    </head>
+    <body class="bg-gray-600">
+
+   <div data-th-replace="header :: navbar"> 
+   </div>
+   <main>
+    <section th:replace="${content}"></section>
+</main>
+<footer>Footer content</footer>
+        
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</body>
+</html>
