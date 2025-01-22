@@ -1,6 +1,7 @@
 <<!DOCTYPE html>
 
-<html th:replace="~{base:: parent(~{::#one},~{::title})}">
+<html th:replace="~{base:: parent(~{::#one},~{::title})}"
+class="dark">
     <head >
 
         <meta charset="utf-8">
@@ -8,17 +9,16 @@
         <title>Contact </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" data-th-href="@{'/css/output.css'}"/>
-        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+        {% comment %} <link rel="stylesheet" data-th-href="@{'/css/output.css'}"/>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" /> {% endcomment %}
 
         <style>
         
         </style>
     </head>
     <body >
-        <div id="one" class="mt-10 bg-red-700 mx-auto  ">
-        
-        <h1 class="text-3xl mt-28"> this is Contact page </h1>
+        <div id="one" class="mt-10 flex justify-center items-center  h-screen bg-green-600  mx-auto  ">
+
 
     <div class="max-w-sm mx-auto w-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">

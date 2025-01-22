@@ -1,21 +1,31 @@
-<<!DOCTYPE html>
-
-<html th:replace="~{base:: parent(~{::#signUp},~{::title})}"> 
-    <head >
+<!DOCTYPE html>
+<html th:replace="~{base::parent(~{::#register},~{::title})}" class="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Uncomment the stylesheets if needed -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" /> -->
     </head>
     <body>
-        <div id="signUp" class="w-full bg-slate-300 h-auto">    
-        <h1 class="text-3xl bg-slate-50"> this is register page  page </h1>
-    </div>
-</div>
-</div>
+        <div id="register">
+            <div class="grid gap-x-5 grid-cols-12 h-screen">
+                <!-- Placeholder column for spacing -->
+                <div class="col-span-4 md:col-span-2 bg-green-500" ></div>
+                <!-- Main content -->
+                <div class="md:col-span-8 col-span-12 bg-red-400">
+                    <p class="text-3xl  bg-gray-500 p-10">
+                        This is not true if you guys like to play
+                        football and are trying to find new data
+                        and subsets of family and planning.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-        
-
-        
-        
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-
     </body>
 </html>

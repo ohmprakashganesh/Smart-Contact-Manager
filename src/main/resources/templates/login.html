@@ -1,22 +1,32 @@
 <<!DOCTYPE html>
 
-<html th:replace="~{base:: parent(~{::#login},~{::title})}">
+<html th:replace="~{base:: parent(~{::#login},~{::title})}"
+class="dark">
     <head >
-        <title> login page</title>
 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% comment %} <link rel="stylesheet" data-th-href="@{'/css/output.css'}"/>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" /> {% endcomment %}
+
+        <style>
+        
+        </style>
     </head>
     <body >
-        <div id="login">
+        <div id="login" class="mt-10 flex justify-center items-center  h-screen bg-green-600  mx-auto  ">
         
-        <h1 class="text-3xl"> this is Login page </h1>
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="max-w-sm mx-auto w-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
     </a>
-    <div class="p-5">
+    <div class="p-8 mt-10  w-full  mx-auto">
         <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">login page is this</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">this os Login page </h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
         <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -27,11 +37,11 @@
         </a>
     </div>
 </div>
+
+        
+
+        
 </div>
-
-        
-
-        
         
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 
