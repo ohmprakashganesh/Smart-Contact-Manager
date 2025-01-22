@@ -11,10 +11,10 @@ import lombok.Data;
 @Data
 public class SocialLinks {
 
-    @Id
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long sid;
 
-    private Long id;
     private String link;
     private String title;
 

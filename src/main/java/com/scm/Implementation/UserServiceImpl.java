@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserServices{
     }
 
     @Override
-    public User getUser(String id) {
+    public User getUser(Long id) {
         Optional<User> optional= userRepository.findById(id);
        if(optional.isPresent()){
         return optional.get();
@@ -46,12 +46,12 @@ public class UserServiceImpl implements UserServices{
       }
 
     @Override
-    public void deleteUser(String id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public boolean isUserExist(String UserId) {
+    public boolean isUserExist(Long UserId) {
         Optional<User> optional= userRepository.findById(UserId);
         if(optional.isPresent()){
             return true;

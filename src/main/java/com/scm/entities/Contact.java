@@ -19,7 +19,8 @@ import lombok.Data;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long cid;
+
     private String name;
     private String email;
     private String phoneNumber;

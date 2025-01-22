@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.scm.Services.UserServices;
 import com.scm.entities.User;
 import com.scm.forms.UserForm;
+import com.scm.helpers.Message;
+import com.scm.helpers.MessageType;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 
 
@@ -65,27 +68,30 @@ public class PageController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public String  registerFun(@ModelAttribute UserForm userForm){
+    public String  registerFun(@ModelAttribute UserForm userForm, HttpSession session){
 
         System.out.println("about page is initialized"+ userForm);
 
-        User user=User.builder()
-        .name(userForm.getName())
-        .email(userForm.getEmail())
-        .password(userForm.getPassword())
-        .about(userForm.getAbout())
-        .phoneNumber(userForm.getPhoneNumber())
-        .profilePic("https://www.pexels.com/photo/green-and-blue-peacock-feather-674010/")
-        .build();
+        User user=new User();
+        user.setName(userForm.getName());
 
-
+         user.setEmail(userForm.getEmail());
+        user.setPassword(userForm.getPassword());
+        user.setAbout(userForm.getAbout());
+        user.setPhoneNumber(userForm.getPhoneNumber());
+        user.setProfilePic("https://www.pexels.com/photo/green-and-blue-peacock-feather-674010/");
         userServices.saveUser(user);
 
 
+
+
         //fetch
-        //validate  
+        //validate
         //save to db
         //message
+       Message message= Message.builder().content("registeration sucessfull").type(MessageType.green).build();
+      session.setAttribute("message", message);
+
         return "redirect:/signup";
     }
 }

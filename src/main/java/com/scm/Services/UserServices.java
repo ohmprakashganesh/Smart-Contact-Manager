@@ -6,10 +6,10 @@ import com.scm.entities.User;
 
 public interface UserServices {
     User saveUser(User user);
-    User getUser(String id);
+    User getUser(Long id);
     User updateUser(User user);
-    void deleteUser(String id);
-    boolean isUserExist(String UserId);
+    void deleteUser(Long id);
+    boolean isUserExist(Long UserId);
     boolean isUserExistByUserEmail(String email);
     List<User> getAllUser();
 
