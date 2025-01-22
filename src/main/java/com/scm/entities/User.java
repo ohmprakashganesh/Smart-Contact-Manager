@@ -12,30 +12,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
+
+
 @Entity
+@Builder
+@Data
 public class User {
 
  
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String userId;
     @Column(nullable =false)
     private String name;
     @Column(nullable =false, unique = true)
-    private String emial;
+    private String email;
     private String password;
     private String about;
     private String profilePic;
+    private String phoneNumber;
 
 //information
     private boolean enabled=false;

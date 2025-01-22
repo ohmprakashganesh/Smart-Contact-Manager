@@ -1,31 +1,81 @@
 <!DOCTYPE html>
-<html th:replace="~{base::parent(~{::#register},~{::title})}" class="dark">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Register</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html th:replace="~{base::parent(~{::#signUp},~{::title})}" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Register</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Uncomment the stylesheets if needed -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" /> -->
-    </head>
-    <body>
-        <div id="register">
-            <div class="grid gap-x-5 grid-cols-12 h-screen">
-                <!-- Placeholder column for spacing -->
-                <div class="col-span-4 md:col-span-2 bg-green-500" ></div>
-                <!-- Main content -->
-                <div class="md:col-span-8 col-span-12 bg-red-400">
-                    <p class="text-3xl  bg-gray-500 p-10">
-                        This is not true if you guys like to play
-                        football and are trying to find new data
-                        and subsets of family and planning.
-                    </p>
-                </div>
+     <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    /> 
+  </head>
+  <body> 
+    <div id="signUp" >
+        <form method="post"
+         data-th-action="@{'/register'}"
+         data-th-object="${userForm}"
+          class="max-w-sm mx-auto bg-white border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5">
+            <div>
+                <h2 class="text-2xl font-bold">Signup Here</h2>
+                <p class="font-serif">Start managing contacts on cloud...</p>
             </div>
-        </div>
+    
+            <div class="mb-5">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Full Name</label>
+                <input type="text"
+                
+                 data-th-field="*{name}"
+                  id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your full name" required>
+            </div>
+    
+            <div class="mb-5">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Email</label>
+                <input type="email" 
+                data-th-field="*{email}"
+                id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+            </div>
+    
+            <div class="mb-5">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">New Password</label>
+                <input type="text"
+                data-th-field="*{password}"
+                 id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+    
+            <div class="mb-5">
+                <label for="contactNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Contact Number</label>
+                <input type="tel"
+             data-th-field="*{phoneNumber}" 
+                 id="contactNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your phone number" required>
+            </div>
+    
+            <div class="mb-5">
+                <label for="about" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Write something about yourself</label>
+                <textarea id="about"
+                data-th-field="*{about}"
+                 rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write here..."></textarea>
+            </div>
+    
+            <div class="flex items-center mb-5">
+                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+                <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+            </div >
+            <div class="flex justify-center space-x-2">
+    
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Signup</button>
+            <button type="reset" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Reset</button>
+            <div>
+        </form>
 
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    </body>
+
+</div>
+  
+          
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  </body>
 </html>
