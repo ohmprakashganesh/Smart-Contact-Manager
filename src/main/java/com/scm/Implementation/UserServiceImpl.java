@@ -3,11 +3,13 @@ package com.scm.Implementation;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.Repositories.UserRepository;
 import com.scm.Services.UserServices;
 import com.scm.entities.User;
+import com.scm.helpers.AppConstants;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -17,12 +19,18 @@ import lombok.AllArgsConstructor;
 public class UserServiceImpl implements UserServices{
 
     final private UserRepository userRepository;
+    final private PasswordEncoder passwordEncoder;
 
 
 
 
     @Override
     public User saveUser(User user) {
+        //incode pass to sasve before
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        //set role by default
+        user.setRoles(List.of(AppConstants.APP_NAME,AppConstants.ROLE_USER));
        return userRepository.save(user);
 
        
