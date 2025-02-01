@@ -15,19 +15,44 @@ xmlns:th="http://www.thymeleaf.org">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
-        <div th:if="${user}">
-        <div data-th-replace="~{user/userNavbar::user_navbar}">hello </div>
-        </div>
-        <div th:unless="${user}">
-            <div data-th-replace="~{header::navbar}"> </div>
-            
-        </div>
+
+              <div className="flex h-screen">
+                <div className="w-[30%] bg-gray-800 text-white p-4">
+                    <div data-th-replace="~{user/sidebar ::sidebar }"> </div>
+
+                </div>
+          
+              
+                <div className="w-[70%] flex flex-col ml-56">
+                
+                  <div className="h-[30px] bg-blue-500 text-white flex items-center px-4">
+                    <div th:if="${user}">
+                        <div data-th-replace="~{user/userNavbar::user_navbar}">hello </div>
+                        </div>
+                        <div th:unless="${user}">
+                            <div data-th-replace="~{header::navbar}"> </div>
+                            
+                        </div>
+                  </div>
+          
+               
+                  <div className="flex-1 bg-gray-200 p-4">
+                    <div th:replace="${content}" ></div>
+
+                </div>
+                </div>
+              </div>
+  
+
+          
+
+
+       
      
 
 
 
-        <div th:replace="${content}" ></div>
-        </div>
+  
 
 
         
