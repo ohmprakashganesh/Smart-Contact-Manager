@@ -22,24 +22,25 @@ public class Helper {
             System.out.println("getting email from google");
             System.out.println(oauth2user.getAttribute("email").toString());
           }
-           if(clientId.equalsIgnoreCase("github")){
+           else if(clientId.equalsIgnoreCase("github")){
             System.out.println("Getting email from github");
             username = oauth2user.getAttribute("email") != null ? oauth2user.getAttribute("email").toString()
                     : oauth2user.getAttribute("login").toString() + "@gmail.com";
           }
-          if(clientId.equalsIgnoreCase("facebook")){
+          else if(clientId.equalsIgnoreCase("facebook")){
             System.out.println("getting name form facebook ");
             System.out.println(oauth2user.getAttribute("email").toString());
 
 
-          }else{
-            username =  authentication.getName();
+          }
+          return username;
+           
             
+          }else{
+            return authentication.getName();
           }
         
-            //sign with google
-    }  
-    return  username ;
+   
     }
 
 }

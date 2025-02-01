@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{base:: parent(~{::#userDashboard},~{::title})}"
+xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dashboard</title>
+    <title >Dashboard</title>
 </head>
 <body>
+    <div id="userDashboard">
+
     <h1>Welcome to the Dashboard</h1>
+    </div>
 </body>
 </html>
