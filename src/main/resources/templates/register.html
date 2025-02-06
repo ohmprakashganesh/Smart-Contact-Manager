@@ -7,17 +7,14 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-     <link
-      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
-      rel="stylesheet"
-    /> 
   </head>
   <body> 
-    <div id="signUp" >
+    <div id="signUp" style="height:1000px,padding-left:250px">
         <form method="post"
          data-th-action="@{'/register'}"
          data-th-object="${userForm}"
-          class="max-w-sm mx-auto bg-white border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5">
+          class="max-w-sm  mx-auto  pt-10 bg-white border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5" 
+          >
             <div>
                 <h2 class="text-2xl font-bold">Signup Here</h2>
                 <p class="font-serif">Start managing contacts on cloud...</p>
@@ -96,6 +93,5 @@
           
   
 
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>
 </html>

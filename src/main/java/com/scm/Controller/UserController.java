@@ -1,16 +1,12 @@
 package com.scm.Controller;
 
-import java.security.Principal;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.scm.Services.UserServices;
-import com.scm.entities.User;
-import com.scm.helpers.Helper;
+
 
 import lombok.AllArgsConstructor;
 
@@ -20,7 +16,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/user")
 public class UserController {
 
-   private final UserServices services;
+//    private final UserServices services;
     // private Logger logger=LoggerFactory.getLogger(UserController.class);
     
     // @ModelAttribute
