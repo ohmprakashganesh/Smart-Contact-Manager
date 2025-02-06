@@ -56,6 +56,8 @@ public class PageController {
         return "login";
     }
 
+
+
     @RequestMapping("/signup")
     public String  signUp(Model model){
 
@@ -112,5 +114,20 @@ public class PageController {
 
         return "redirect:/signup";
     }
+
+
+    @RequestMapping("/addContact")
+    public String  addContactFun(){
+        System.out.println("add form is  page is initialized");
+        return "user/addContact";
+    }
+
+    @RequestMapping("/allContacts")
+    public String  allContactsFun(){
+        System.out.println("add form is  page is initialized");
+        return "user/allContacts";
+    }
+
+
 }
 

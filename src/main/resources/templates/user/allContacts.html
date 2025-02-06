@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html th:replace="~{base:: parent(~{::#contacts},~{::title})}"
+ xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title data-th-text="${user.name}+' | scm '">>List of Contacts</title>
+</head>
+<body>
+    <div id="contacts"  class="p-4 sm:ml-64">
+    <div th:if="${user}">
+        <div data-th-replace="~{user/sidebar ::sidebar }"> </div>
+      </div>
+      <div class="sm:pl-64 pt-20" style="height: 1000px">
+        <div class="flex items-center justify-center md:pt-32 flex-col">
+          <!--  profie card -->
+
+
+          <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <th class="py-2 px-4">Name</th>
+                    <th class="py-2 px-4">Email</th>
+                    <th class="py-2 px-4">Phone</th>
+                    <th class="py-2 px-4">Address</th>
+                    <th class="py-2 px-4">Picture</th>
+                    <th class="py-2 px-4">Description</th>
+                    <th class="py-2 px-4">Favorite</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="py-2 px-4">John Doe</td>
+                    <td class="py-2 px-4">john@example.com</td>
+                    <td class="py-2 px-4">123-456-7890</td>
+                    <td class="py-2 px-4">123 Main St, City</td>
+                    <td class="py-2 px-4">
+                        <img src="https://via.placeholder.com/50" alt="Profile" class="w-10 h-10 rounded-full">
+                    </td>
+                    <td class="py-2 px-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                    <td class="py-2 px-4 text-center">
+                        <span class="text-green-500 font-bold">✔</span>
+                    </td>
+                </tr>
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="py-2 px-4">Jane Smith</td>
+                    <td class="py-2 px-4">jane@example.com</td>
+                    <td class="py-2 px-4">987-654-3210</td>
+                    <td class="py-2 px-4">456 Elm St, Town</td>
+                    <td class="py-2 px-4">
+                        <img src="https://via.placeholder.com/50" alt="Profile" class="w-10 h-10 rounded-full">
+                    </td>
+                    <td class="py-2 px-4">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td class="py-2 px-4 text-center">
+                        <span class="text-red-500 font-bold">✘</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+         
+      </div>
+    
+    </div>
+  
+</body>
+</html>
