@@ -21,13 +21,18 @@ method="post"
  data-th-action="@{'/contact/postContact'}"
  data-th-object="${contactForm}"
    class="max-w-sm mx-auto p-5 text-black  bg-gray-300">
-   
+
     <div class=" flex font-bold justify-center"> Add Contact </div>
+    <p data-th-replace="Info :: messageBox"> </p>
     <div class="mb-5">
       <label for="email" class="block mb-2 text-sm font-medium text-black ">Contact Name</label>
       <input
       data-th-field="*{name}"
        type="text" id="email" class="shadow-xs bg-gray-50 border border-gray-300 text-black-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" placeholder="name@flowbite.com"  />
+       <p 
+       data-th-if="${#fields.hasErrors('name')}"
+       data-th-errors="*{name}"
+       class="text-red-400 text-xs font-semibold">to show error </p>
     </div>
   
 
@@ -35,19 +40,31 @@ method="post"
     <div class="mb-5">
         <label for="email" class="block mb-2 text-sm font-medium text-black ">Your email</label>
         <input 
-        data-th-field="*{email}" type="email" id="password" class="shadow-xs bg-gray-50 border   border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-black-400 text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" required />
+        data-th-field="*{email}" type="email" id="password" class="shadow-xs bg-gray-50 border   border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-black-400 text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+        <p 
+        data-th-if="${#fields.hasErrors('email')}"
+        data-th-errors="*{email}"
+        class="text-red-400 text-xs font-semibold">to show error </p>
     </div>
     <div class="mb-5">
         <label  class="block mb-2 text-sm font-medium text-black ">phone </label>
-        <input type="number"
+        <input type="text"
           data-th-field="*{phoneNumber}"
-         id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-black-400  text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" required />
+         class="shadow-xs bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-black-400  text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+         <p 
+         data-th-if="${#fields.hasErrors('phoneNumber')}"
+         data-th-errors="*{phoneNumber}"
+         class="text-red-400 text-xs font-semibold">to show error </p>
     </div>
     <div class="mb-5">
         <label  class="block mb-2 text-black text-sm font-medium ">Contact Address </label>
         <input 
           data-th-field="*{address}"
-         type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" required />
+         type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+         <p 
+         data-th-if="${#fields.hasErrors('address')}"
+         data-th-errors="*{address}"
+         class="text-red-400 text-xs font-semibold">to show error </p>
     </div>
    
 
@@ -61,10 +78,10 @@ method="post"
     <div class="mb-5  gap-3 flex justify-between w-full">
         <input 
          data-th-field="*{link1}"
-        type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  w-1/2    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" required />
+        type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  w-1/2    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
         <input
          data-th-field="*{link2}"
-        type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" required />
+        type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
 
     </div>
 

@@ -74,7 +74,7 @@ public class PageController {
 
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public String  registerFun(@Valid  @ModelAttribute UserForm userForm, BindingResult rBindingResult, HttpSession session ){
+    public String  registerFun(@Valid  @ModelAttribute UserForm userForm, BindingResult rBindingResult, HttpSession session){
 
         System.out.println("about page is initialized"+ userForm);
 
@@ -108,6 +108,7 @@ public class PageController {
         userServices.saveUser(user);
 
         //save to db
+        
         //message
        Message message= Message.builder().content("registeration sucessfull").type(MessageType.green).build();
       session.setAttribute("message", message);

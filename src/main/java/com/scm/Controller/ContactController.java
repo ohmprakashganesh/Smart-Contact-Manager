@@ -14,7 +14,10 @@ import com.scm.entities.Contact;
 import com.scm.entities.User;
 import com.scm.forms.ContactForm;
 import com.scm.helpers.Helper;
+import com.scm.helpers.Message;
+import com.scm.helpers.MessageType;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
@@ -49,7 +52,7 @@ public class ContactController {
     }
     
     @RequestMapping(value ="/postContact", method = RequestMethod.POST)
-    public String addContact (@ModelAttribute ContactForm contactForm,@Valid BindingResult result, Authentication authentication) {
+    public String addContact (@Valid @ModelAttribute ContactForm contactForm, BindingResult result, Authentication authentication, HttpSession session) {
 
      
         if(result.hasErrors()){
@@ -74,7 +77,8 @@ public class ContactController {
         contactServices.saveContact(contact);
 
         System.out.println("form submitted successfully  ");
-         return "user/addContact";
+ Message message= Message.builder().content("contact adding sucessfull").type(MessageType.green).build();
+      session.setAttribute("message", message);         return "user/addContact";
 
     }
 
