@@ -22,6 +22,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.ToString;
 
 
 
@@ -55,6 +56,7 @@ private String providerUserId;
 
 //mapping of data
 
+@ToString.Exclude
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch =FetchType.LAZY )
 private List<Contact> contact= new ArrayList<>();
 

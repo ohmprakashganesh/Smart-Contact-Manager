@@ -18,7 +18,7 @@ public class Rootcontroller {
        private final UserServices services;
 
 
-        @ModelAttribute
+    @ModelAttribute
     public void AddLoggedInUserInfo(Model model,Authentication auth){
         if(auth==null){
             return; 

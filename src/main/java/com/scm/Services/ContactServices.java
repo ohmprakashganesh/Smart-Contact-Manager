@@ -11,6 +11,7 @@ public interface ContactServices {
     List<Contact> allContacts();
      Contact getContact(Long id);
      void deleteContact(Long id);
+     List<Contact> getByUserId(Long id);
      List<Contact> search(String name,String email, String phoneNumber );
     
 }

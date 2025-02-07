@@ -22,24 +22,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-
 public class OauthAuthenticationSucessHandler implements AuthenticationSuccessHandler {
 
-Logger logger= LoggerFactory.getLogger(OauthAuthenticationSucessHandler.class);
+    @Autowired
+    private Logger logger= LoggerFactory.getLogger(OauthAuthenticationSucessHandler.class);
 
 @Autowired
- private UserRepository userRepository;
+  private UserRepository userRepository;
+
+
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
        
-                logger.info("OAuthAuthenticationSuccessHandler ");
 
                 var oauth2AuthenticationToken= (OAuth2AuthenticationToken)authentication;
 
                 String authorizedClientRegistrationId= oauth2AuthenticationToken.getAuthorizedClientRegistrationId();
-                logger.info(authorizedClientRegistrationId);
 
                 var user0= (DefaultOAuth2User)authentication.getPrincipal();
                 user0.getAttributes().forEach((key,value)->{
