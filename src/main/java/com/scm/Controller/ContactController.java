@@ -1,5 +1,9 @@
 package com.scm.Controller;
 
+import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.scm.Services.ContactServices;
+import com.scm.Services.ImageService;
 import com.scm.Services.UserServices;
+import com.scm.config.LoggerConfig;
+import com.scm.config.OauthAuthenticationSucessHandler;
 import com.scm.entities.Contact;
 import com.scm.entities.User;
 import com.scm.forms.ContactForm;
@@ -29,6 +36,8 @@ import lombok.AllArgsConstructor;
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
+
+    private final ImageService imageService;
 
     private final ContactServices contactServices;
     private final UserServices userServices;
@@ -63,12 +72,21 @@ public class ContactController {
         User user= userServices.getUserByEmail(username);
 
            //process the image 
+
+           System.out.println("name file is "+ contactForm.getProfileImg().getOriginalFilename());
+
+           String url = imageService.uploadImage(contactForm.getProfileImg());
+           
+
+
+           
         Contact contact= new Contact();
         contact.setName(contactForm.getName());
         contact.setEmail(contactForm.getEmail());
         contact.setAddress(contactForm.getAddress());
         contact.setDescription(contactForm.getDescription());
         contact.setFavorite(contactForm.isFavorite());
+        contact.setPicture(url);
         //set the user 
         contact.setUser(user);
 

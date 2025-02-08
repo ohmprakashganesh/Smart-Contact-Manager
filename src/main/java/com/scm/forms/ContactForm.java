@@ -28,8 +28,9 @@ public class ContactForm {
     private boolean favorite;
     private String link1;
     private String link2;
-
-
+//validate file
+//size and resolution
+    
     private MultipartFile  profileImg;
     
 }

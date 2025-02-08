@@ -29,6 +29,8 @@ public class Contact {
     @Column(length = 10000)
     private String description;
     private boolean favorite=false;
+    private String link1;
+    private String link2;
 
 
     // private List<String> links=new ArrayList<>();
