@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.scm.Repositories.ContactRepository;
 import com.scm.Services.ContactServices;
 import com.scm.entities.Contact;
+import com.scm.entities.User;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -66,6 +67,12 @@ public class ContactServiceImpl implements ContactServices {
     @Override
     public List<Contact> getByUserId(Long id) {
         return contactRepository.findByUserId(id);
+    }
+
+    @Override
+    public List<Contact> getByUser(User user) {
+      return contactRepository.findByUser(user);
+   
     }
     
 }

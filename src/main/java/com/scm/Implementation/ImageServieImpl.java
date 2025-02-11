@@ -12,7 +12,6 @@ import com.cloudinary.utils.ObjectUtils;
 import com.scm.Services.ImageService;
 import com.scm.helpers.AppConstants;
 
-import groovyjarjarantlr4.v4.parse.ANTLRParser.finallyClause_return;
 import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
@@ -21,10 +20,10 @@ public class ImageServieImpl implements ImageService {
     private final Cloudinary cloudinary;
 
     @Override
-    public String uploadImage(MultipartFile profileImg) {
+    public String uploadImage(MultipartFile profileImg , String fileName) {
         //save file in cloudinary using  cloudinary 
 
-        String fileName= UUID.randomUUID().toString();
+        // String fileName= UUID.randomUUID().toString();
         //if want to change orignal name with unique filename use these
         try {
             //create array of file side 
@@ -32,7 +31,7 @@ public class ImageServieImpl implements ImageService {
             //add data in the array 
             profileImg.getInputStream().read(data);
             cloudinary.uploader().upload(data, ObjectUtils.asMap(
-                "public_id",profileImg.getOriginalFilename()
+                "public_id",fileName
                 
             ));
             

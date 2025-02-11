@@ -79,22 +79,29 @@ method="post"
     <div class="mb-5  gap-3 flex justify-between w-full">
         <input 
          data-th-field="*{link1}"
-        type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  w-1/2    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+        type="text" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  w-1/2    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
         <input
          data-th-field="*{link2}"
-        type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+        type="text"  class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
 
     </div>
 
     <div class="mb-5">
       
-<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Upload multiple files</label>
+<label class="block mb-2 text-sm font-medium text-gray-900 " for="multiple_files">Upload Image </label>
+
+<p 
+data-th-if="${#fields.hasErrors('profileImg')}"
+data-th-errors="*{profileImg}"
+class="text-red-400 text-xs font-semibold">to show error </p>
 <input
    data-th-field="*{profileImg}"
+   id="profileImg"
  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
+   <img src="" alt="preview" class="w-20 h-20" id="image">
+
+   
     </div>
-
-
      <div class="flex items-start mb-5">
       <div class="flex items-center h-5">
         <input id="terms"
@@ -125,6 +132,7 @@ method="post"
       </div>
     
     </div>
+    <script data-th-src="@{'/js/admin.js'}"> </script>
   
 </body>
 </html>

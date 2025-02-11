@@ -27,7 +27,7 @@ public class Rootcontroller {
         User user= services.getUserByEmail(name);
     
         model.addAttribute("user", user);
-        System.out.println(user);   
+      
      System.err.println("this is printing of the name of logged user "+ name );
 
     }

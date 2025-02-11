@@ -52,7 +52,7 @@ public class PageController {
 
     @RequestMapping("/login")
     public String  loginPage(){
-        System.out.println("about page is initialized");
+        System.out.println("login page is initialized");
         return "login";
     }
 
@@ -68,7 +68,7 @@ public class PageController {
         temp.setPhoneNumber(null);
         temp.setName(null);
         model.addAttribute("userForm", temp);
-        System.out.println("about page is initialized");
+        System.out.println("signupd page is initialized");
         return "register";
     }
 
@@ -123,11 +123,11 @@ public class PageController {
         return "user/addContact";
     }
 
-    @RequestMapping("/allContacts")
-    public String  allContactsFun(){
-        System.out.println("add form is  page is initialized");
-        return "user/allContacts";
-    }
+    // @RequestMapping("/allContacts")
+    // public String  allContactsFun(){
+    //     System.out.println("add form is  page is initialized");
+    //     return "user/allContacts";
+    // }
 
 
 }
