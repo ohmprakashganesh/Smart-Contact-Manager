@@ -8,4 +8,7 @@ public class AppConstants {
     public static final int  imageWidth=500;
     public static final int imageHeight=500;
     public static final String  imageCrop= "fill";
+
+    public static final int  pageSize=2;
+
 }

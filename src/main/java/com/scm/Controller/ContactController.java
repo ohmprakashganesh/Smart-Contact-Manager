@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import com.scm.Services.UserServices;
 import com.scm.entities.Contact;
 import com.scm.entities.User;
 import com.scm.forms.ContactForm;
+import com.scm.helpers.AppConstants;
 import com.scm.helpers.Helper;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
@@ -66,31 +68,67 @@ public class ContactController {
          return "user/addContact";
     }
 
-    @GetMapping("/all")
-    public String getContacts(Authentication authentication , Model model) {
+    // @GetMapping("/all")
+    // public String getContacts(Authentication authentication , Model model) {
 
-        String username= Helper.getEmailOfLoggedUser(authentication);
-        User user= userServices.getUserByEmail(username);
+    //     String username= Helper.getEmailOfLoggedUser(authentication);
+    //     User user= userServices.getUserByEmail(username);
 
-       List<Contact> byUser= contactServices.getByUser(user);
-       System.out.println("Contacts fetched: " + byUser.size()); // Debugging
+    //    List<Contact> byUser= contactServices.getByUser(user);
+    //    System.out.println("Contacts fetched: " + byUser.size()); // Debugging
 
-       for (Contact contact : byUser) {
-        System.out.println(contact);
+    //    for (Contact contact : byUser) {
+    //     System.out.println(contact);
 
-        System.out.println(contact.getPicture());
+    //     System.out.println(contact.getPicture());
 
 
         
-       }
+    //    }
 
 
 
    
 
-       model.addAttribute("contacts", byUser);
+    //    model.addAttribute("contacts", byUser);
 
-       System.out.println("all contact data load by user"+user.toString());
+    //    System.out.println("all contact data load by user"+user.toString());
+    //    return "user/allContacts";
+    // }
+
+    @RequestMapping("/all")
+    public String getContacts(
+        @RequestParam(value = "page", defaultValue = "0") int page,
+        @RequestParam(value = "size",defaultValue = "4") int size,
+        @RequestParam( value = "sortBy", defaultValue = "name") String sortBy,
+        @RequestParam( value = "direction" ,defaultValue = "desc") String direction,
+        Authentication authentication , Model model) {
+
+        String username= Helper.getEmailOfLoggedUser(authentication);
+        User user= userServices.getUserByEmail(username);
+
+       Page<Contact> byUser= contactServices.getByUser(user,page,size, sortBy, direction);        
+    //    for (Contact contact : byUser.getContent()) {
+    //     System.out.println(contact);
+
+    //     System.out.println(contact.getPicture());
+        
+    //    }
+    System.out.println(byUser.getNumber());
+    System.out.println(byUser.getSize());
+
+    System.out.println( "total page "+byUser.getTotalPages());
+
+
+
+       model.addAttribute("contacts", byUser);
+       model.addAttribute("pages", byUser.getTotalPages());
+       model.addAttribute("pageSize", AppConstants.pageSize);
+    
+
+
+
+    //    System.out.println("all contact data load by user"+user.toString());
        return "user/allContacts";
     }
 

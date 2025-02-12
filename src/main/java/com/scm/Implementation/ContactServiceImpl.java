@@ -1,9 +1,11 @@
 package com.scm.Implementation;
 
-import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.scm.Repositories.ContactRepository;
@@ -37,11 +39,7 @@ public class ContactServiceImpl implements ContactServices {
 
     }
 
-    @Override
-    public List<Contact> allContacts() {
-      return contactRepository.findAll();
-    }
-
+ 
     @Override
     public Contact getContact(Long id) {
         // TODO Auto-generated method stub
@@ -70,9 +68,22 @@ public class ContactServiceImpl implements ContactServices {
     }
 
     @Override
-    public List<Contact> getByUser(User user) {
-      return contactRepository.findByUser(user);
+    public List<Contact> allContacts() {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'allContacts'");
+    }
+
+    
+    @Override
+    public org.springframework.data.domain.Page<Contact> getByUser(User user,int page, int size, String sortBy, String direct) {
+      Sort sort=direct.equals("desc") ?Sort.by(sortBy).descending():Sort.by(sortBy).ascending();
+      var Pageable= PageRequest.of(page, size , sort);
+      return contactRepository.findByUser(user, Pageable);
    
     }
+
+  
+
+ 
     
 }

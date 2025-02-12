@@ -2,6 +2,9 @@ package com.scm.Services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.scm.entities.Contact;
 import com.scm.entities.User;
 
@@ -13,7 +16,7 @@ public interface ContactServices {
      Contact getContact(Long id);
      void deleteContact(Long id);
      List<Contact> getByUserId(Long id);
-     List<Contact> getByUser(User user);
+     Page<Contact> getByUser(User user , int page , int size, String field, String direction );
 
 
      List<Contact> search(String name,String email, String phoneNumber );
