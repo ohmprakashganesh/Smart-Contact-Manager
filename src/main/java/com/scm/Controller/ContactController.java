@@ -11,20 +11,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.scm.Services.ContactServices;
 import com.scm.Services.ImageService;
 import com.scm.Services.UserServices;
 import com.scm.entities.Contact;
 import com.scm.entities.User;
 import com.scm.forms.ContactForm;
+import com.scm.forms.SearchForm;
 import com.scm.helpers.AppConstants;
 import com.scm.helpers.Helper;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
 
+import groovyjarjarpicocli.CommandLine.Help;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -81,15 +85,8 @@ public class ContactController {
     //     System.out.println(contact);
 
     //     System.out.println(contact.getPicture());
-
-
         
     //    }
-
-
-
-   
-
     //    model.addAttribute("contacts", byUser);
 
     //    System.out.println("all contact data load by user"+user.toString());
@@ -104,30 +101,22 @@ public class ContactController {
         @RequestParam( value = "direction" ,defaultValue = "desc") String direction,
         Authentication authentication , Model model) {
 
-        String username= Helper.getEmailOfLoggedUser(authentication);
-        User user= userServices.getUserByEmail(username);
+        String email= Helper.getEmailOfLoggedUser(authentication);
+        User user= userServices.getUserByEmail(email);
 
-       Page<Contact> byUser= contactServices.getByUser(user,page,size, sortBy, direction);        
+       Page<Contact> byUser= contactServices.getByUser(user,page,size, sortBy, direction);
     //    for (Contact contact : byUser.getContent()) {
     //     System.out.println(contact);
-
     //     System.out.println(contact.getPicture());
-        
     //    }
     System.out.println(byUser.getNumber());
     System.out.println(byUser.getSize());
 
     System.out.println( "total page "+byUser.getTotalPages());
-
-
-
        model.addAttribute("contacts", byUser);
        model.addAttribute("pages", byUser.getTotalPages());
        model.addAttribute("pageSize", AppConstants.pageSize);
-    
-
-
-
+       model.addAttribute("searchForm", new SearchForm());
     //    System.out.println("all contact data load by user"+user.toString());
        return "user/allContacts";
     }
@@ -144,8 +133,6 @@ public class ContactController {
     
     @RequestMapping(value ="/postContact", method = RequestMethod.POST)
     public String addContact (@Valid @ModelAttribute ContactForm contactForm, BindingResult result, Authentication authentication, HttpSession session) {
-
-     
         if(result.hasErrors()){
             return "user/addContact";
         }
@@ -191,7 +178,55 @@ public class ContactController {
     public void deleteById(){
         System.out.println("deleted is clicked");
     }
+    
+    @RequestMapping("/search")
+    public String searchByKeyWords(
+        @ModelAttribute SearchForm searchForm,
+        @RequestParam(value = "size",defaultValue = "4") int size,
+        @RequestParam( value = "sortBy", defaultValue = "name") String sortBy,
+        @RequestParam( value = "direction" ,defaultValue = "desc") String direction,
+        @RequestParam(value = "page", defaultValue = "0") int page,
+        Authentication authentication,
+        Model model
+        ) {
 
+            String email= Helper.getEmailOfLoggedUser(authentication);
+            User user=userServices.getUserByEmail(email);
+
+
+      
+
+
+         if(searchForm.getField().equalsIgnoreCase("Name"))
+         {
+        
+          Page<Contact> searched=  contactServices.searchByName(user,searchForm.getValue(),page,size,sortBy,direction);
+            model.addAttribute("searched", searched);
+
+         }
+         if(searchForm.getField().equalsIgnoreCase("Email"))
+         {
+            Page<Contact> searched=  contactServices.searchByEmail(user,searchForm.getValue(),page,size,sortBy,direction);
+            model.addAttribute("searched", searched);
+         }
+
+         if(searchForm.getField().equalsIgnoreCase("number"))
+         {
+            Page<Contact> searched=  contactServices.searchByPhoneNumber(user,searchForm.getValue(),page,size,sortBy,direction);
+            model.addAttribute("searched", searched);     
+        }else{
+            System.out.println("no such data found");
+        }
+
+        model.addAttribute("searchForm", searchForm);
+        return "user/search";
+    }
+    
+    
+ 
+
+
+    
  
     
 

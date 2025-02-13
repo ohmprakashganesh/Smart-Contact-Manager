@@ -15,19 +15,20 @@
 
           
  
-  <form class=" flex justify-start gap-2  relative w-full py-2 ">
+  <form  data-th-object=${searchForm}  data-th-action="@{'/contact/search'}"
+  class=" flex justify-start gap-2  relative w-full py-2 ">
 <div>
-  <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5   dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option selected>select field</option>
+  <select data-th-field="*{field}" name="field" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5   dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option selected value=" "> select field</option>
     <option value="name">Name</option>
-    <option value="phone">Phone</option>
+    <option value="number">PhoneNumber</option>
     <option value="email">Email</option>
   </select>
 </div>
 <div class=" flex  gap-2">
-      <input type="text" id="voice-search" class="bg-gray-50 w-max-w-sm border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-x-black-500 block   p-1.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-l-black-500" placeholder="Search by" required />
+      <input  data-th-field="*{value}"  type="text" id="voice-search" class="bg-gray-50 w-max-w-sm border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-x-black-500 block   p-1.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-l-black-500" placeholder="Search by" required />
   
-      <button type="submit" class="inline-flex items-center py-1.5 px-2 ms-2 text-sm font-medium text-black bg-black-700 rounded-lg border border-blue-700 ">
+      <button type="submit" name="submit" class="inline-flex items-center py-1.5 px-2 ms-2 text-sm font-medium text-black bg-black-700 rounded-lg border border-blue-700 ">
         <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
         </svg>Search

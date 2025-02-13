@@ -16,9 +16,12 @@ public interface ContactServices {
      Contact getContact(Long id);
      void deleteContact(Long id);
      List<Contact> getByUserId(Long id);
-     Page<Contact> getByUser(User user , int page , int size, String field, String direction );
+     Page<Contact> getByUser(User user , int page , int size, String field, String direction);
 
 
-     List<Contact> search(String name,String email, String phoneNumber );
+     Page<Contact> searchByEmail(User user,String email , int page, int size,String sortBy, String direction);
+     Page<Contact> searchByName(User user,String name  , int page, int size,String sortBy,String direction );
+     Page<Contact> searchByPhoneNumber(User user,String phoneNumber  , int page, int size,String sortBy,String direction );
+
     
 }

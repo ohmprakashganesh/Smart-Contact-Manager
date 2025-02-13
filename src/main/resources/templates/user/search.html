@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html th:replace="~{base:: parent(~{::#search},~{::title})}"
+ xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title data-th-text="${user.name}+' | scm '">>List of Contacts</title>
+</head>
+<body>
+    <div id="search"  class="p-4 sm:ml-64">
+    <div th:if="${user}">
+        <div data-th-replace="~{user/sidebar ::sidebar }"> </div>
+      </div>
+      <div class="sm:pl-64 pt-20 overflow-x-scroll" style="height: 1000px">
+        <div class="flex overflow-x-auto items-center  justify-center md:pt-32 flex-col">
+
+          
+            <form  data-th-object="${searchForm}" method="get"  action=" " data-th-action="@{'/contact/search'}"
+            class=" flex justify-start gap-2  relative w-full py-2 ">
+          <div>
+            <select data-th-field="*{field}"  id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5   dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option selected value="">select field</option>
+              <option value="name">Name</option>
+              <option value="number">Phone</option>
+              <option value="email">Email</option>
+            </select>
+          </div>
+          <div class=" flex  gap-2">
+                <input  data-th-field="*{value}"  type="text" id="voice-search" class="bg-gray-50 w-max-w-sm border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-x-black-500 block   p-1.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-l-black-500" placeholder="Search by" required />
+            
+                <button type="submit" name="submit" class="inline-flex items-center py-1.5 px-2 ms-2 text-sm font-medium text-black bg-black-700 rounded-lg border border-blue-700 ">
+                  <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>Search
+               </button>
+            </div>
+          </form>
+          
+
+
+
+
+          <!--  profie card -->
+
+        <div class ="w-full bg-white overflow-x-auto" >
+          <table class="border-2 border-y-2 border-gray-600 table-fixed w-full "  >
+            <thead class="bg-gray-800 w-full  text-white ">
+                <tr >
+                    <th class="py-4 px-4 w-auto">Name</th>
+                    <th class="py-4 px-4">Email</th>
+                    <th class="py-2 px-1">Phone</th>
+                    <th class="py-2 px-1">Address</th>
+                    <th class="py-2 px-1">Picture</th>
+                    <th class="py-2 px-1">Description</th>
+                    <th class="py-2 px-1">Favorite</th>
+                    <th class="py-2 px-1">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                data-th-each="contact : ${searched}"
+               class="border-b  hover:bg-gray-100">
+                    <td class="py-1 px-2" data-th-text="${contact.name}" >John Doe</td>
+                    <td class="py-1 px-2" data-th-text="${contact.email}" >john@example.com</td>
+                    <td class="py-2 px-2" data-th-text="${contact.phoneNumber}" >123-456-7890</td>
+                    <td class="py-2 px-1" data-th-text="${contact.address}" >123 Main St, City</td>
+                    <td class="py-2 px-1">
+                        <img onerror="this.src='https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png'"
+                        data-th-src="${contact.picture}"  alt="Profile" class="w-10 h-10 rounded-full">
+                    </td>
+                    <td class="py-2 px-1" data-th-text="${contact.description}" Lorem ipsum dolor sit amet, consectetur adipiscing elit.></td>
+                    <td class="py-2 px-1 text-center" data-th-text="${contact.favorite}" >
+                    </td>
+                    <td> <a data-th-href="@{/contact/edit}" >Edit </a>  <a data-th-href="@{/contact/delete}" >Delete </a></td>
+                </tr>
+               
+            </tbody>
+        </table>
+        <div>
+        
+ 
+ 
+  
+
+         
+      </div>
+    
+    </div>
+  
+</body>
+</html>

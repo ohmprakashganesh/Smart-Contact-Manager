@@ -3,6 +3,7 @@ package com.scm.Implementation;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -57,10 +58,7 @@ public class ContactServiceImpl implements ContactServices {
         System.out.println("delete the item of id "+ id);
     }
 
-    @Override
-    public List<Contact> search(String name, String email, String phoneNumber) {
-       return null;
-    }
+
 
     @Override
     public List<Contact> getByUserId(Long id) {
@@ -81,6 +79,31 @@ public class ContactServiceImpl implements ContactServices {
       return contactRepository.findByUser(user, Pageable);
    
     }
+
+
+    @Override
+    public Page <Contact> searchByEmail( User user,String email, int page, int size, String sortBy, String direction) {
+      Sort sort=direction.equals("desc")?Sort.by(sortBy).descending():Sort.by(sortBy).ascending();
+      var  pageable= PageRequest.of(page, size,sort);
+     return  contactRepository.findByUserAndEmailContaining( user,email,pageable);
+    }
+
+
+    @Override
+    public Page<Contact> searchByName( User user,String name, int page, int size, String sortBy, String direction) {
+      Sort sort=direction.equals("desc")?Sort.by(sortBy).descending():Sort.by(sortBy).ascending();
+      var  pageable= PageRequest.of(page, size,sort);
+     return  contactRepository.findByUserAndNameContaining(user,name,pageable);
+    }
+
+    @Override
+    public Page<Contact> searchByPhoneNumber( User user,String phoneNumber, int page, int size, String sortBy, String direction) {
+      Sort sort=direction.equals("desc")?Sort.by(sortBy).descending():Sort.by(sortBy).ascending();
+      var  pageable= PageRequest.of(page, size,sort);
+     return  contactRepository.findByUserAndPhoneNumberContaining(user,phoneNumber,pageable);
+    }
+
+  
 
   
 
