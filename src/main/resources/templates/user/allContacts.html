@@ -4,13 +4,15 @@
  xmlns:th="http://www.thymeleaf.org">
 <head>
     <title data-th-text="${user.name}+' | scm '">>List of Contacts</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <div id="contacts"  class="p-4 sm:ml-64">
     <div th:if="${user}">
         <div data-th-replace="~{user/sidebar ::sidebar }"> </div>
       </div>
-      <div class="sm:pl-64 pt-20 overflow-x-scroll" style="height: 1000px">
+      <div class="sm:pl-64 pt-20 overflow-x-scroll  " style="height: 600px">
         <div class="flex overflow-x-auto items-center  justify-center md:pt-32 flex-col">
 
           
@@ -70,7 +72,7 @@
                     <td class="py-2 px-1" data-th-text="${contact.description}" Lorem ipsum dolor sit amet, consectetur adipiscing elit.></td>
                     <td class="py-2 px-1 text-center" data-th-text="${contact.favorite}" >
                     </td>
-                    <td> <a data-th-href="@{/contact/edit}" >Edit </a>  <a data-th-href="@{/contact/delete}" >Delete </a></td>
+                    <td> <a data-th-href="@{/contact/edit}" >Edit </a> <button data-th-onClick=(loadData([[${contact.cid}]]))>view </button>  <a data-th-href="@{/contact/delete}" >Delete </a> </td>
                 </tr>
                
             </tbody>
@@ -81,7 +83,9 @@
 <nav aria-label="Page navigation example">
     <ul class="flex items-center pt-4 pb-5 -space-x-px h-10 text-sm">
       <li>
-        <a href="#" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <a 
+        data-th-href="${currentPage > 0 ? '/contact/all?page=' + (currentPage - 1) : '#'}"
+         class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
           <span class="sr-only">Previous</span>
           <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
@@ -95,7 +99,9 @@
       </li>
       
       <li >
-        <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <a 
+           data-th-href="${currentPage < pages  ? '/contact/all?page=' + (currentPage + 1) : '#'}"
+         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
           <span class="sr-only">Next</span>
           <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
@@ -104,7 +110,12 @@
       </li>
     </ul>
   </nav>
+  
+
 </div>
+<div data-th-replace="~{user/modal ::modal }"> hello</div>
+
+
  
   
 
@@ -112,6 +123,8 @@
       </div>
     
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script  data-th-src=@{/js/contacts.js}> </script>
   
 </body>
 </html>

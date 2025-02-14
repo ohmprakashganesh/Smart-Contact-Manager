@@ -3,14 +3,18 @@ package com.scm.Controller;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.UUID;
+
+import org.apache.hc.core5.http.HttpStatus;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -117,16 +121,28 @@ public class ContactController {
        model.addAttribute("pages", byUser.getTotalPages());
        model.addAttribute("pageSize", AppConstants.pageSize);
        model.addAttribute("searchForm", new SearchForm());
+       model.addAttribute("currentPage", byUser.getNumber());
     //    System.out.println("all contact data load by user"+user.toString());
        return "user/allContacts";
     }
 
 
     
-    @GetMapping("/single")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+
+    @RequestMapping("/single/{cid}")
+   public ResponseEntity<?> getSingleContact(@PathVariable Long cid) { 
+        try {
+            Contact contact = contactServices.getContact(cid);
+            if (contact == null) {
+                return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body("Contact not found");
+            }
+            return ResponseEntity.ok(contact);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
     }
+      
+    
     
 
 
