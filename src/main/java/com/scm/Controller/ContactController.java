@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.apache.hc.core5.http.HttpStatus;
+import org.apache.hc.core5.http.Method;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -130,7 +133,7 @@ public class ContactController {
     
 
     @RequestMapping("/single/{cid}")
-   public ResponseEntity<?> getSingleContact(@PathVariable Long cid) { 
+   public ResponseEntity<?> getSingleContact(@PathVariable Long cid) {
         try {
             Contact contact = contactServices.getContact(cid);
             if (contact == null) {
@@ -163,10 +166,7 @@ public class ContactController {
            System.out.println("name file is "+ contactForm.getProfileImg().getOriginalFilename());
 
          String url = imageService.uploadImage(contactForm.getProfileImg(),fileName);
-           
 
-
-           
         Contact contact= new Contact();
         contact.setName(contactForm.getName());
         contact.setEmail(contactForm.getEmail());
@@ -189,9 +189,6 @@ public class ContactController {
              return "user/addContact";
 
     }
-    
-
-
 
     @RequestMapping("/delete/{cid}")
     public String deleteById(@PathVariable Long cid){
@@ -199,9 +196,50 @@ public class ContactController {
         System.out.println("deleted sucessfully "+cid);
         return "redirect:/contact/all";
     }
-    
 
-    
+    @GetMapping("/update/{cid}")
+    public String updateContactForm(@PathVariable Long cid, Model model) {
+
+        var contact=contactServices.getContact(cid);
+
+        ContactForm contactForm= new ContactForm();
+        contactForm.setCid(cid);
+        contactForm.setName(contact.getName());
+        contactForm.setEmail(contact.getEmail());
+       contactForm.setPhoneNumber(contact.getPhoneNumber());
+       contactForm.setAddress(contact.getAddress());
+       contactForm.setDescription(contact.getDescription());
+       contactForm.setFavorite(contact.isFavorite());
+       contactForm.setLink1(contact.getLink1());
+       contactForm.setLink2(contact.getLink2());
+       model.addAttribute("contactForm", contactForm);
+        return "user/updateform";
+    }
+
+    @RequestMapping( value = "/doUpdate/{cid}", method = RequestMethod.POST)
+    public String postUpdateForm(@Valid @ModelAttribute ContactForm contactForm,BindingResult bindingResult , @PathVariable Long cid) {
+
+        
+
+        Contact contact= new Contact();
+        contact.setName(contactForm.getName());
+        contact.setEmail(contactForm.getEmail());
+        contact.setAddress(contactForm.getAddress());
+        contact.setPhoneNumber(contactForm.getPhoneNumber());
+        contact.setLink1(contactForm.getLink1());
+        contact.setLink2(contactForm.getLink2());
+        contact.setDescription(contactForm.getDescription());
+        contact.setFavorite(contactForm.isFavorite());
+
+        contactServices.updContact(contact, cid);
+        
+        System.out.println("updated sucessfully "+cid);
+        return "redirect:/contact/all";
+    }
+
+
+
+
     @RequestMapping("/search")
     public String searchByKeyWords(
         @ModelAttribute SearchForm searchForm,
@@ -217,12 +255,10 @@ public class ContactController {
             User user=userServices.getUserByEmail(email);
 
 
-      
 
 
          if(searchForm.getField().equalsIgnoreCase("Name"))
          {
-        
           Page<Contact> searched=  contactServices.searchByName(user,searchForm.getValue(),page,size,sortBy,direction);
             model.addAttribute("searched", searched);
 
@@ -244,6 +280,7 @@ public class ContactController {
         model.addAttribute("searchForm", searchForm);
         return "user/search";
     }
+    
     
     
  

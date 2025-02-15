@@ -19,7 +19,9 @@ class="dark">
        
     <body >
         <div id="login">
-            <div class="max-w-sm mx-auto bg-white border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5">
+          <div class="sm:pl-64 pt-20" style="height: 1000px">
+            <div class="flex items-center justify-center md:pt-32 flex-col">
+            <div class="w-[300px]    mx-auto border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5">
                 <div  class="text-center text-red-600" th:if="${param.logout}">
                     you are log out.</div>
                     <div class="text-center text-red-700" th:if="${param.error}">
@@ -45,6 +47,8 @@ data-th-action="@{'/authenticate'}">
   <div class="w-full flex justify-center">
   <button> <a data-th-href="@{'/oauth2/authorization/github'}"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-around"> <i class="fa-brands fa-github mr-4"></i> <span class="ms-5">Login with GitHub </span> </a></button>
   </div>
+</div>
+</div>
 </div>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 

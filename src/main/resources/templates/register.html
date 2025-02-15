@@ -9,12 +9,14 @@
 
   </head>
   <body> 
-    <div id="signUp" style="height:1000px,padding-left:250px">
+    <div id="signUp" style="height:1000px ,padding-left:250px">
+      <div class="sm:pl-64 pt-20" style="height: 1000px">
+        <div class="flex items-center justify-center  md:pt-32 flex-col">
         <form method="post"
          data-th-action="@{'/register'}"
          data-th-object="${userForm}"
-          class="max-w-sm  mx-auto  pt-10 bg-white border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5" 
-          >
+         class="w-[300px] pt-10 bg-white border-2 shadow-md shadow-gray-600 border-yellow-100 mt-5 p-5">
+         
             <div>
                 <h2 class="text-2xl font-bold">Signup Here</h2>
                 <p class="font-serif">Start managing contacts on cloud...</p>
@@ -88,7 +90,12 @@
         </form>
 
 
+
 </div>
+</div>
+  
+</div>
+  
   
           
   

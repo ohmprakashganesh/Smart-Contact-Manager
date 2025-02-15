@@ -9,7 +9,6 @@ public interface UserServices {
     User getUser(Long id);
     User getUserByEmail(String email);
     User updateUser(User user);
-    void deleteUser(Long id);
     boolean isUserExist(Long UserId);
     boolean isUserExistByUserEmail(String email);
     List<User> getAllUser();

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +29,24 @@ public class ContactServiceImpl implements ContactServices {
 
     @Override
     public Contact updContact(Contact contact, Long id) {
-      Optional<Contact> optional=contactRepository.findById(id);
-      if(optional.isPresent()){
-      return  optional.get();
-      }else{
-        throw new EntityNotFoundException("entity of id "+id+ "not found");
+       Optional< Contact> optional= contactRepository.findById(id);
+       if(optional.isPresent()){
+        Contact contact2= optional.get();
+        contact2.setName(contact.getName());
+        contact2.setEmail(contact.getEmail());
+        contact2.setAddress(contact.getAddress());
+        contact2.setPhoneNumber(contact.getPhoneNumber());
+        contact2.setDescription(contact.getDescription());
+        contact2.setLink1(contact.getLink1());
 
-      }
+        contactRepository.save(contact2);
+        System.out.println("updated sucessfully form repository ");
+        return contact2;
+       }else{
+        return null;
+       }
+
+    
 
     }
 

@@ -74,7 +74,7 @@
                     </td>
                     <td> 
 
-                      <a data-th-href="@{/contact/edit}" >Edit </a>
+                      <a data-th-href="@{'/contact/update/'+${contact.cid}}" >Edit </a>
 
                        <button data-th-onClick=(loadData([[${contact.cid}]]))>view </button> 
                        

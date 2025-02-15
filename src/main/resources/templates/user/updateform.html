@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html th:replace="~{base:: parent(~{::#update},~{::title})}"
+ xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title >>UpdateContact</title>
+</head>
+<body>
+    <div id="update"  class="p-4 sm:ml-64">
+    <div th:if="${user}">
+        <div data-th-replace="~{user/sidebar ::sidebar }"> </div>
+     </div>
+      <div class="sm:pl-64 pt-20" style="height: 1000px">
+        <div class="flex items-center justify-center md:pt-32 flex-col">
+          <!--  profie card -->
+
+
+          
+<form
+method="post"
+ data-th-action="@{'/contact/doUpdate/'+${contactForm.cid}}"
+ data-th-object="${contactForm}"
+ enctype="multipart/form-data"
+   class="max-w-sm mx-auto p-5 text-black  bg-gray-300">
+
+    <div class=" flex font-bold justify-center">Update Contact </div>
+    <p data-th-replace="Info :: messageBox"> </p>
+    <div class="mb-5">
+      <label for="email" class="block mb-2 text-sm font-medium text-black ">Contact Name</label>
+      <input
+       data-th-field="*{name}"
+       type="text" id="email" class="shadow-xs bg-gray-50 border border-gray-300 text-black-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" placeholder="name@flowbite.com"  />
+       <p 
+       data-th-if="${#fields.hasErrors('name')}"
+       data-th-errors="*{name}"
+       class="text-red-400 text-xs font-semibold">to show error </p>
+    </div>
+  
+    <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-black ">Your email</label>
+        <input 
+        data-th-field="*{email}" type="email" id="password" class="shadow-xs bg-gray-50 border   border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-black-400 text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+        <p 
+        data-th-if="${#fields.hasErrors('email')}"
+        data-th-errors="*{email}"
+        class="text-red-400 text-xs font-semibold">to show error </p>
+    </div>
+    <div class="mb-5">
+        <label  class="block mb-2 text-sm font-medium text-black ">phone </label>
+        <input type="text"
+          data-th-field="*{phoneNumber}"
+         class="shadow-xs bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-black-400  text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+         <p 
+         data-th-if="${#fields.hasErrors('phoneNumber')}"
+         data-th-errors="*{phoneNumber}"
+         class="text-red-400 text-xs font-semibold">to show error </p>
+    </div>
+    <div class="mb-5">
+        <label  class="block mb-2 text-black text-sm font-medium ">Contact Address </label>
+        <input 
+          data-th-field="*{address}"
+         type="text" id="repeat-password" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+         <p 
+         data-th-if="${#fields.hasErrors('address')}"
+         data-th-errors="*{address}"
+         class="text-red-400 text-xs font-semibold">to show error </p>
+    </div>
+   
+
+    <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-black ">description </label>
+    <textarea id="about"
+     data-th-field="*{description}"
+     rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400   dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write here..."></textarea>
+    </div>
+
+    <div class="mb-5  gap-3 flex justify-between w-full">
+        <input 
+         data-th-field="*{link1}"
+        type="text" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  w-1/2    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+        <input
+         data-th-field="*{link2}"
+        type="text"  class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"  />
+
+    </div>
+
+    <div class="mb-5">
+      
+<label class="block mb-2 text-sm font-medium text-gray-900 " for="multiple_files">Upload Image </label>
+
+<p 
+data-th-if="${#fields.hasErrors('profileImg')}"
+data-th-errors="*{profileImg}"
+class="text-red-400 text-xs font-semibold">to show error </p>
+<input
+   data-th-field="*{profileImg}"
+   id="profileImg"
+ class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" multiple>
+   <img src="" alt="preview" class="w-20 h-20" id="image">
+
+   
+    </div>
+     <div class="flex items-start mb-5">
+      <div class="flex items-center h-5">
+        <input id="terms"
+         data-th-field="*{Favorite}"
+         type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300  dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 text-black dark:focus:ring-offset-gray-800" required />
+      </div>
+      <label for="terms" class="ms-2 text-sm font-medium text-gray-900 ">I agree with the 
+        <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
+    </div>
+    <div class="flex justify-center">
+    <button type="submit" class= "  text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add  Contact</button>
+    </div>  
+</form>
+  
+  <div>
+          
+
+
+
+
+
+
+
+  
+
+
+        </div>
+      </div>
+    
+    </div>
+    <script data-th-src="@{'/js/admin.js'}"> </script>
+  
+</body>
+</html>

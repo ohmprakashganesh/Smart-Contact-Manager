@@ -37,16 +37,6 @@ public class UserController {
 
     @RequestMapping("/profile")
     public String  userProfile(Model model, Authentication authentication){
-   
-        // logger.info(name);
-        return "user/userProfile";
+           return "user/userProfile";
     }
-
-
-
-    //user add contacts
-
-    //user view contact
-
-    //user delete contacts
 }

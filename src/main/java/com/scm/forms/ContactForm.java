@@ -13,6 +13,7 @@ import lombok.Data;
 @Data
 public class ContactForm {
 
+      private Long cid;
     @NotBlank(message = "fill the name")
     private String name;
 
