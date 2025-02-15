@@ -72,9 +72,15 @@
                     <td class="py-2 px-1" data-th-text="${contact.description}" Lorem ipsum dolor sit amet, consectetur adipiscing elit.></td>
                     <td class="py-2 px-1 text-center" data-th-text="${contact.favorite}" >
                     </td>
-                    <td> <a data-th-href="@{/contact/edit}" >Edit </a> <button data-th-onClick=(loadData([[${contact.cid}]]))>view </button>  <a data-th-href="@{/contact/delete}" >Delete </a> </td>
-                </tr>
-               
+                    <td> 
+
+                      <a data-th-href="@{/contact/edit}" >Edit </a>
+
+                       <button data-th-onClick=(loadData([[${contact.cid}]]))>view </button> 
+                       
+                      <!--<a data-th-href="@{'/contact/delete/'+${contact.cid}}" >Delete </a>-->
+                       <button data-th-onClick="deleteContact([[${contact.cid}]])" >Delete </button> </td>
+                </tr> 
             </tbody>
         </table>
         <div>

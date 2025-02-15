@@ -190,10 +190,17 @@ public class ContactController {
 
     }
     
-    @DeleteMapping("/delete")
-    public void deleteById(){
-        System.out.println("deleted is clicked");
+
+
+
+    @RequestMapping("/delete/{cid}")
+    public String deleteById(@PathVariable Long cid){
+        contactServices.deleteContact(cid);
+        System.out.println("deleted sucessfully "+cid);
+        return "redirect:/contact/all";
     }
+    
+
     
     @RequestMapping("/search")
     public String searchByKeyWords(
